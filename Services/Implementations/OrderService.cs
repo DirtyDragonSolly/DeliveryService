@@ -44,15 +44,16 @@ namespace DeliveryService.Services.Implementations
             var result = orders
                 .Where(w => w.District == cityDistrict &&
                             w.DeliveryTime >= startTime &&
-                            w.DeliveryTime <= endTime)
-                .OrderBy(o => o.DeliveryTime)
+                            w.DeliveryTime <= endTime)                
                 .Select(s => new OrdersResponse
                 {
                     Id = s.Id,
                     DeliveryTime = s.DeliveryTime,
                     District = s.District,
                     WeightInKg = s.WeightInKg
-                });
+                })
+                .OrderBy(o => o.DeliveryTime)
+                .ToList();
 
             _logger.LogInformation(
                 "Выдан результат фильтрации по входным данным:\nГород доставки: {CityDistrict}\nНачальное время: {StartTime}\nКонечное время: {EndTime}\nКоличество заказов: {Count}",
@@ -71,10 +72,7 @@ namespace DeliveryService.Services.Implementations
         {
             await using (var writer = new StreamWriter(_deliverySettings.OutputPath, false))
             {
-                foreach (var order in orders) 
-                {
-                    await writer.WriteLineAsync(JsonSerializer.Serialize(order));
-                } 
+                await writer.WriteLineAsync(JsonSerializer.Serialize(orders));
             }
 
             _logger.LogInformation("Результат вывелен в файл TestResult.json");
