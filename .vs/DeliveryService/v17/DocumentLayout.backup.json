@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\1\\Desktop\\DeliveryService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B7144889-A5A6-45B2-B7CE-C4C47C990127}|DeliveryService.csproj|c:\\users\\1\\desktop\\deliveryservice\\services\\implementations\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7144889-A5A6-45B2-B7CE-C4C47C990127}|DeliveryService.csproj|solutionrelative:services\\implementations\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7144889-A5A6-45B2-B7CE-C4C47C990127}|DeliveryService.csproj|c:\\users\\1\\desktop\\deliveryservice\\models\\requests\\filterordersrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7144889-A5A6-45B2-B7CE-C4C47C990127}|DeliveryService.csproj|solutionrelative:models\\requests\\filterordersrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\1\\Desktop\\DeliveryService\\Services\\Implementations\\OrderService.cs",
+              "RelativeDocumentMoniker": "Services\\Implementations\\OrderService.cs",
+              "ToolTip": "C:\\Users\\1\\Desktop\\DeliveryService\\Services\\Implementations\\OrderService.cs",
+              "RelativeToolTip": "Services\\Implementations\\OrderService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwDMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T09:42:12.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FilterOrdersRequest.cs",
+              "DocumentMoniker": "C:\\Users\\1\\Desktop\\DeliveryService\\Models\\Requests\\FilterOrdersRequest.cs",
+              "RelativeDocumentMoniker": "Models\\Requests\\FilterOrdersRequest.cs",
+              "ToolTip": "C:\\Users\\1\\Desktop\\DeliveryService\\Models\\Requests\\FilterOrdersRequest.cs",
+              "RelativeToolTip": "Models\\Requests\\FilterOrdersRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T09:37:45.426Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
