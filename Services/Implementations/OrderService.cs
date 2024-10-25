@@ -31,11 +31,21 @@ namespace DeliveryService.Services.Implementations
         }
 
         public async Task<IEnumerable<OrdersResponse>> FilterAsync(string cityDistrict, DateTime firstDeliveryDateTime)
-        {            
+        {
             var orders = await GetOrdersFromFileAsync();
 
+            var earliestTime = orders
+                .Where(o => o.District == cityDistrict)
+                .Min(o => o.DeliveryTime);
+
+            var startTime = new DateTime(Math.Max(firstDeliveryDateTime.Ticks, earliestTime.Ticks));
+            var endTime = startTime.AddMinutes(30);
+
             var result = orders
-                .Where(w => w.District == cityDistrict && w.DeliveryTime == firstDeliveryDateTime)
+                .Where(w => w.District == cityDistrict &&
+                            w.DeliveryTime >= startTime &&
+                            w.DeliveryTime <= endTime)
+                .OrderBy(o => o.DeliveryTime)
                 .Select(s => new OrdersResponse
                 {
                     Id = s.Id,
@@ -44,10 +54,31 @@ namespace DeliveryService.Services.Implementations
                     WeightInKg = s.WeightInKg
                 });
 
-            _logger.LogInformation("Выдан результат фильтрации по входным данным Города доставки: {0}; и времени доставки: {1}", cityDistrict, firstDeliveryDateTime);
+            _logger.LogInformation(
+                "Выдан результат фильтрации по входным данным:\nГород доставки: {CityDistrict}\nНачальное время: {StartTime}\nКонечное время: {EndTime}\nКоличество заказов: {Count}",
+                cityDistrict,
+                startTime,
+                endTime,
+                result.Count()
+            );
+
+            SetResultInFileAsync( result );
+
             return result;
         }
 
+        private async Task SetResultInFileAsync(IEnumerable<OrdersResponse> orders)
+        {
+            await using (var writer = new StreamWriter(_deliverySettings.OutputPath, false))
+            {
+                foreach (var order in orders) 
+                {
+                    await writer.WriteLineAsync(JsonSerializer.Serialize(order));
+                } 
+            }
+
+            _logger.LogInformation("Результат вывелен в файл TestResult.json");
+        }
         private async Task<IEnumerable<Order>> GetOrdersFromFileAsync()
         {
             return (await File.ReadAllLinesAsync(_deliverySettings.InputFile))
